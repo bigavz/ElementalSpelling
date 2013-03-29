@@ -1,3 +1,5 @@
+from pip.backwardcompat import raw_input
+
 elements = {
     'Ac': 'Actinium',
     'Ag': 'Silver',
@@ -112,5 +114,19 @@ elements = {
     'Y': 'Yttrium',
     'Yb': 'Ytterbium',
     'Zn': 'Zinc',
-    'Zr': 'Zirconium',
+    'Zr': 'Zirconium'
 }
+
+word = raw_input("Enter the word you would like to be spelled: ")
+i = 0
+guesses == []
+#different permutations of len(1) and len(2) symbols
+while(i<len(word)):
+    if elements[word[i:i+1]] == True: #if the first two lettes match a symbol
+        guesses.append(word[i:i+1],elements[word[i:i+1]])
+    if elements[word[i]] == True: #if the first letter matches a symbol
+        guesses.append([word[i],elements[word[i]]])
+
+
+
+
