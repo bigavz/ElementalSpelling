@@ -115,7 +115,33 @@ elements = {
     'Zr': 'Zirconium'
 }
 
-word = raw_input("Enter the word you would like to be spelled: ")
+
+# kesti logic
+# check first letter, then first two letters
+def canSpell(word):
+    if len(word) > 0:
+        l = list(word)
+        l[0] = l[0].upper()
+        word = "".join(l)
+        # base case
+        if elements.get(word):
+            print word + ": " + elements[word]
+        else:
+            if elements.get(word[:2]):
+                print word[:2] + ": " + elements[word[:2]]
+                canSpell(word[2:])
+            if elements.get(word[:1]):
+                print word[:1] + ": " + elements[word[:1]]
+                canSpell(word[1:])
+    else:
+        return
+
+print("Enter the word you would like to be spelled, or type 'q' to quit:")
+word = raw_input()
+
+while word != 'q':
+    canSpell(word)
+    word = raw_input()
 
 
 def feedstring(p):
@@ -147,24 +173,3 @@ print answer
     #if elements[word[i]] == True: #if the first letter matches a symbol
     #    guesses.append([word[i],elements[word[i]]])
 
-
-# kesti logic
-# check first letter, then first two letters
-def canSpell(word):
-    if len(word) > 0:
-        l = list(word)
-        l[0] = l[0].upper()
-        word = "".join(l)
-        # base case
-        if elements.get(word):
-            print word + ": " + elements[word]
-        else:
-            if elements.get(word[:2]):
-                print word[:2] + ": " + elements[word[:2]]
-                canSpell(word[2:])
-            if elements.get(word[:1]):
-                print word[:1] + ": " + elements[word[:1]]
-                canSpell(word[1:])
-    else:
-        return
-canSpell(word)
