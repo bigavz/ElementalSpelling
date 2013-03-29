@@ -1,5 +1,3 @@
-from pip.backwardcompat import raw_input
-
 elements = {
     'Ac': 'Actinium',
     'Ag': 'Silver',
@@ -151,3 +149,8 @@ print answer
     #if elements[word[i]] == True: #if the first letter matches a symbol
     #    guesses.append([word[i],elements[word[i]]])
 
+# kesti logic
+def canSpell(word):
+    if elements[word]:
+        print elements[word]
+canSpell(word)
