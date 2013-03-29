@@ -130,7 +130,7 @@ def canSpell(word):
             if elements.get(word[:2]):
                 print word[:2] + ": " + elements[word[:2]]
                 canSpell(word[2:])
-            if elements.get(word[:1]):
+            elif elements.get(word[:1]):
                 print word[:1] + ": " + elements[word[:1]]
                 canSpell(word[1:])
     else:
