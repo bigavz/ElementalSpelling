@@ -125,13 +125,13 @@ def canSpell(word):
         word = "".join(l)
         # base case
         if elements.get(word):
-            print word + ": " + elements[word]
+            print(word + ": " + elements[word])
         else:
             if elements.get(word[:2]):
-                print word[:2] + ": " + elements[word[:2]]
+                print(word[:2] + ": " + elements[word[:2]])
                 canSpell(word[2:])
             elif elements.get(word[:1]):
-                print word[:1] + ": " + elements[word[:1]]
+                print(word[:1] + ": " + elements[word[:1]])
                 canSpell(word[1:])
     else:
         return
@@ -139,11 +139,13 @@ def canSpell(word):
 
 def main():
     print("Enter the word you would like to be spelled, or type 'q' to quit:")
-    word = raw_input(">>")
+    word = input(">>")
 
     while word != 'q':
-        canSpell(word)
-        word = raw_input(">>")
+        #canSpell(word)
+        aspell(word)
+        word = input(">>")
+
 
 
 def feedstring(p):
@@ -152,21 +154,23 @@ def feedstring(p):
     else:
         return False
 
-i = 0
-answer = ''
 
-while i < len(word):
-    if feedstring(word[i]) == False:
-        if feedstring(word[i:i + 1]) == False:
-            i = 1000
+def aspell(word):
+    i = 0
+    answer = ''
+    print(i)
+    while len(word) > i:
+        if feedstring(word[i:i+1]) == False:
+            if feedstring(word[i]) == False:
+                i = 1000
+            else:
+                answer = answer + feedstring[word[i]]
+                i = i + 1
         else:
-            answer = answer + feedstring[word[i:i + 1]]
+            answer = feedstring(word[i:i+1])
             i = i + 2
-    else:
-        answer = answer + feedstring(word[i])
-        i = i + 1
 
-print answer
+    print(answer)
 
 #different permutations of len(1) and len(2) symbols
 
