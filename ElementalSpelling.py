@@ -136,12 +136,14 @@ def canSpell(word):
     else:
         return
 
-print("Enter the word you would like to be spelled, or type 'q' to quit:")
-word = raw_input()
 
-while word != 'q':
-    canSpell(word)
-    word = raw_input()
+def main():
+    print("Enter the word you would like to be spelled, or type 'q' to quit:")
+    word = raw_input(">>")
+
+    while word != 'q':
+        canSpell(word)
+        word = raw_input(">>")
 
 
 def feedstring(p):
@@ -173,3 +175,4 @@ print answer
     #if elements[word[i]] == True: #if the first letter matches a symbol
     #    guesses.append([word[i],elements[word[i]]])
 
+main()
