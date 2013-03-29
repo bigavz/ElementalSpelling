@@ -148,7 +148,8 @@ print answer
     #    guesses.append([word[i],elements[word[i]]])
 
 
-#kesti logic
+# kesti logic
+# check first letter, then first two letters
 def canSpell(word):
     if len(word) > 0:
         l = list(word)
@@ -158,8 +159,12 @@ def canSpell(word):
         if elements.get(word):
             print word + ": " + elements[word]
         else:
-            canSpell(word[:2])
-            canSpell(word[2:])
+            if elements.get(word[:2]):
+                print word[:2] + ": " + elements[word[:2]]
+                canSpell(word[2:])
+            if elements.get(word[:1]):
+                print word[:1] + ": " + elements[word[:1]]
+                canSpell(word[1:])
     else:
         return
 canSpell(word)
