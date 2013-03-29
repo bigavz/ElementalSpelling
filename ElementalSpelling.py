@@ -118,21 +118,24 @@ elements = {
 
 # kesti logic
 # check first letter, then first two letters
-def canSpell(word):
+def canSpell(word, spelling):
     if len(word) > 0:
         l = list(word)
         l[0] = l[0].upper()
         word = "".join(l)
         # base case
         if elements.get(word):
-            print(word + ": " + elements[word])
+            spelling.append(word + ": " + elements[word])
+            print('\n'.join(spelling))
         else:
             if elements.get(word[:2]):
-                print(word[:2] + ": " + elements[word[:2]])
-                canSpell(word[2:])
+                spelling.append(word[:2] + ": " + elements[word[:2]])
+                canSpell(word[2:], spelling)
             elif elements.get(word[:1]):
-                print(word[:1] + ": " + elements[word[:1]])
-                canSpell(word[1:])
+                spelling.append(word[:1] + ": " + elements[word[:1]])
+                canSpell(word[1:], spelling)
+            else:
+                print("can't spell this word using elements.")
     else:
         return
 
@@ -148,7 +151,8 @@ def main():
     word = input(">>")
 
     while word != 'q':
-        #canSpell(word)
+        canSpell(word, [])
+        print('------')
         aspell(word)
         word = input(">>")
 
