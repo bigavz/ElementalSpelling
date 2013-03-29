@@ -119,7 +119,7 @@ word = raw_input("Enter the word you would like to be spelled: ")
 
 
 def feedstring(p):
-    if elements[p] == True:
+    if elements.get(p) == True:
         return elements[p]
     else:
         return False
@@ -150,6 +150,6 @@ print answer
 
 #kesti logic
 def canSpell(word):
-    if elements[word]:
-        print elements[word]
+    if elements.get(word):
+        print word + ": " + elements[word]
 canSpell(word)
