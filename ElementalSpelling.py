@@ -150,6 +150,16 @@ print answer
 
 #kesti logic
 def canSpell(word):
-    if elements.get(word):
-        print word + ": " + elements[word]
+    if len(word) > 0:
+        l = list(word)
+        l[0] = l[0].upper()
+        word = "".join(l)
+        # base case
+        if elements.get(word):
+            print word + ": " + elements[word]
+        else:
+            canSpell(word[:2])
+            canSpell(word[2:])
+    else:
+        return
 canSpell(word)
