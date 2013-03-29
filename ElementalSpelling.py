@@ -116,6 +116,13 @@ elements = {
 }
 
 word = raw_input("Enter the word you would like to be spelled: ")
+# kesti logic
+def canSpell(word):
+    if elements[word]:
+        print elements[word]
+canSpell(word)
+
+# bigavz logic
 i = 0
 guesses = []
 #different permutations of len(1) and len(2) symbols
