@@ -118,15 +118,36 @@ elements = {
 }
 
 word = raw_input("Enter the word you would like to be spelled: ")
+
+def feedstring(p):
+    if elements[p] == True:
+        return elements[p]
+    else:
+        return False
+
 i = 0
-guesses == []
+answer = ''
+
+while i < len(word):
+    if feedstring(word[i]) == False:
+        if feedstring(word[i:i+1]) == False:
+            i = 1000
+        else:
+            answer = answer + feedstring[word[i:i+1]]
+            i=i+2
+    else:
+        answer = answer + feedstring(word[i])
+        i=i+1
+
+print answer
+
+
 #different permutations of len(1) and len(2) symbols
-while(i<len(word)):
-    if elements[word[i:i+1]] == True: #if the first two lettes match a symbol
-        guesses.append(word[i:i+1],elements[word[i:i+1]])
-    if elements[word[i]] == True: #if the first letter matches a symbol
-        guesses.append([word[i],elements[word[i]]])
 
 
 
+    #if elements[word[i:i+1]] == True: #if the first two lettes match a symbol
+    #    guesses.append(word[i:i+1],elements[word[i:i+1]])
+    #if elements[word[i]] == True: #if the first letter matches a symbol
+    #    guesses.append([word[i],elements[word[i]]])
 
