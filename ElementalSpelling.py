@@ -138,6 +138,12 @@ def canSpell(word):
 
 
 def main():
+    # keep it compatible for python 2 and 3
+    try:
+        input = raw_input
+    except NameError:
+        pass
+
     print("Enter the word you would like to be spelled, or type 'q' to quit:")
     word = input(">>")
 
@@ -145,7 +151,6 @@ def main():
         #canSpell(word)
         aspell(word)
         word = input(">>")
-
 
 
 def feedstring(p):
@@ -160,14 +165,14 @@ def aspell(word):
     answer = ''
     print(i)
     while len(word) > i:
-        if feedstring(word[i:i+1]) == False:
+        if feedstring(word[i:i + 1]) == False:
             if feedstring(word[i]) == False:
                 i = 1000
             else:
                 answer = answer + feedstring[word[i]]
                 i = i + 1
         else:
-            answer = feedstring(word[i:i+1])
+            answer = feedstring(word[i:i + 1])
             i = i + 2
 
     print(answer)
