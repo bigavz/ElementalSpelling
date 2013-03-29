@@ -157,29 +157,6 @@ def main():
         word = input(">>")
 
 
-<<<<<<< HEAD
-def feedstring(p):
-    if elements.get(p) == True:
-        return elements[p]
-    else:
-        return False
-
-
-def aspell(word):
-    i = 0
-    answer = ''
-    print(i)
-    while len(word) > i:
-        if feedstring(word[i:i + 1]) == False:
-            if feedstring(word[i]) == False:
-                i = 1000
-            else:
-                answer = answer + feedstring[word[i]]
-                i = i + 1
-        else:
-            answer = feedstring(word[i:i + 1])
-            i = i + 2
-=======
 def aspell(word):
     word = word[0].upper() + word[1:] #uppercase first character
 
@@ -198,7 +175,6 @@ def aspell(word):
             print(elements[word[0]] + aspell(word[1:]))
     else: #if len2 matches
         print(elements[word[0:1]] + aspell(word[2:]))
->>>>>>> redoing algorithm
 
 
 #different permutations of len(1) and len(2) symbols
