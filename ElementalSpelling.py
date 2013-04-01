@@ -117,7 +117,6 @@ elements = {
 
 
 # kesti logic
-# how to determine when the original word cannot be spelled?
 def canSpell(word, spelling):
     if len(word) > 0:
         l = list(word)
@@ -126,22 +125,22 @@ def canSpell(word, spelling):
         # base case
         if elements.get(word):
             spelling.append(word + ": " + elements[word])
-            print('\nit can be spelled this way:')
+            print('can be spelled this way:')
             print('\n'.join(spelling))
-            return
+            return True
         else:
             if elements.get(word[:2]):
                 spelling1 = list(spelling)
                 spelling1.append(word[:2] + ": " + elements[word[:2]])
-                canSpell(word[2:], spelling1)
+                if canSpell(word[2:], spelling1):
+                    return True
             if elements.get(word[:1]):
                 spelling2 = list(spelling)
                 spelling2.append(word[:1] + ": " + elements[word[:1]])
-                canSpell(word[1:], spelling2)
+                if canSpell(word[1:], spelling2):
+                    return True
             else:
-                return
-    else:
-        return
+                return False
 
 
 def main():
@@ -155,7 +154,8 @@ def main():
     word = input(">>").strip()  # remove spaces
 
     while word != 'q':
-        canSpell(word, [])
+        if not canSpell(word, []):
+            print('cannot spell that word using elements')
         print('------')
         aspell(word)
         word = input(">>")
@@ -163,22 +163,22 @@ def main():
 
 
 def aspell(word):
-    word = word[0].upper() + word[1:] #uppercase first character
+    word = word[0].upper() + word[1:]  # uppercase first character
 
     if len(word) == 1:
-        if elements.get(word) == True:
+        if elements.get(word) is True:
             return elements[word]
         else:
             return False
     if len(word) == 0:
         return ''
 
-    if elements.get(word[0:1]) == False: #compare first 2 chars to symbols
-        if elements.get(word[0]) == False: #compare first char to symbols
+    if elements.get(word[0:1]) is False:  # compare first 2 chars to symbols
+        if elements.get(word[0]) is False:  # compare first char to symbols
             return False
-        else: #if len1 matches
+        else:  # if len1 matches
             print(elements[word[0]] + aspell(word[1:]))
-    else: #if len2 matches
+    else:  # if len2 matches
         print(elements[word[0:1]] + aspell(word[2:]))
 
 
