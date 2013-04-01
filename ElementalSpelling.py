@@ -117,7 +117,7 @@ elements = {
 
 
 # kesti logic
-# check first letter, then first two letters
+# how to determine when the original word cannot be spelled?
 def canSpell(word, spelling):
     if len(word) > 0:
         l = list(word)
@@ -126,16 +126,20 @@ def canSpell(word, spelling):
         # base case
         if elements.get(word):
             spelling.append(word + ": " + elements[word])
+            print('\nit can be spelled this way:')
             print('\n'.join(spelling))
+            return
         else:
             if elements.get(word[:2]):
-                spelling.append(word[:2] + ": " + elements[word[:2]])
-                canSpell(word[2:], spelling)
-            elif elements.get(word[:1]):
-                spelling.append(word[:1] + ": " + elements[word[:1]])
-                canSpell(word[1:], spelling)
+                spelling1 = list(spelling)
+                spelling1.append(word[:2] + ": " + elements[word[:2]])
+                canSpell(word[2:], spelling1)
+            if elements.get(word[:1]):
+                spelling2 = list(spelling)
+                spelling2.append(word[:1] + ": " + elements[word[:1]])
+                canSpell(word[1:], spelling2)
             else:
-                print("can't spell this word using elements.")
+                return
     else:
         return
 
@@ -148,13 +152,14 @@ def main():
         pass
 
     print("Enter the word you would like to be spelled, or type 'q' to quit:")
-    word = input(">>")
+    word = input(">>").strip()  # remove spaces
 
     while word != 'q':
         canSpell(word, [])
         print('------')
         aspell(word)
         word = input(">>")
+    return
 
 
 def aspell(word):
