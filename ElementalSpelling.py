@@ -1,3 +1,5 @@
+import sys
+
 elements = {
     'Ac': 'Actinium',
     'Ag': 'Silver',
@@ -145,21 +147,21 @@ def canSpell(word, spelling):
 
 def main():
     # keep it compatible for python 2 and 3
-
-    try:
-        input = raw_input
-    except:
-        pass
+    def get_input(prompt):
+        if sys.hexversion > 0x03000000:
+            return input(prompt)
+        else:
+            return raw_input(prompt)
 
     print("Enter the word you would like to be spelled, or type 'q' to quit:")
-    word = input(">>").strip()  # remove spaces
+    word = get_input(">>").strip()  # remove spaces
 
     while word != 'q':
-        #if not canSpell(word, []):
-        #    print('cannot spell that word using elements')
-        #print('------')
+        if not canSpell(word, []):
+            print('cannot spell that word using elements')
+        print('------')
         print(aspell(word))
-        word = input(">>")
+        word = get_input(">>")
     return
 
 
