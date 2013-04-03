@@ -145,10 +145,10 @@ def canSpell(word, spelling):
 
 def main():
     # keep it compatible for python 2 and 3
-    #try:
-    #    input = raw_input
-    #except NameError:
-    #    pass
+    try:
+        input = raw_input
+    except NameError:
+        pass
 
     print("Enter the word you would like to be spelled, or type 'q' to quit:")
     word = input(">>").strip()  # remove spaces
@@ -157,8 +157,8 @@ def main():
         #if not canSpell(word, []):
         #    print('cannot spell that word using elements')
         #print('------')
-        word = input(">>")
         print(aspell(word))
+        word = input(">>")
     return
 
 
@@ -173,9 +173,9 @@ def aspell(word):
         else:
             word = word[0].upper() + word[1:]
 
-        if elements.get(word) is True: #if the char is a symbol then we're done
+        if elements.get(word) is True:  # if the char is a symbol then we're done
             return elements[word]
-        elif elements.get(word[0]) is True: #if len1 is
+        elif elements.get(word[0]) is True:  # if len1 is
             return elements[word[0]] + aspell(word[1:])
         elif elements.get(word[:1]) is True:
             return elements[word[:1]] + aspell(word[2:])
