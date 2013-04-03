@@ -145,41 +145,42 @@ def canSpell(word, spelling):
 
 def main():
     # keep it compatible for python 2 and 3
-    try:
-        input = raw_input
-    except NameError:
-        pass
+    #try:
+    #    input = raw_input
+    #except NameError:
+    #    pass
 
     print("Enter the word you would like to be spelled, or type 'q' to quit:")
     word = input(">>").strip()  # remove spaces
 
     while word != 'q':
-        if not canSpell(word, []):
-            print('cannot spell that word using elements')
-        print('------')
-        aspell(word)
+        #if not canSpell(word, []):
+        #    print('cannot spell that word using elements')
+        #print('------')
         word = input(">>")
+        print(aspell(word))
     return
 
 
 def aspell(word):
-    word = word[0].upper() + word[1:]  # uppercase first character
-
-    if len(word) == 1:
-        if elements.get(word) is True:
-            return elements[word]
-        else:
-            return False
     if len(word) == 0:
         return ''
 
-    if elements.get(word[0:1]) is False:  # compare first 2 chars to symbols
-        if elements.get(word[0]) is False:  # compare first char to symbols
-            return False
-        else:  # if len1 matches
-            print(elements[word[0]] + aspell(word[1:]))
-    else:  # if len2 matches
-        print(elements[word[0:1]] + aspell(word[2:]))
+    else:
+        # uppercase first character
+        if len(word) == 1:
+            word = word.upper()
+        else:
+            word = word[0].upper() + word[1:]
+
+        if elements.get(word) is True: #if the char is a symbol then we're done
+            return elements[word]
+        elif elements.get(word[0]) is True: #if len1 is
+            return elements[word[0]] + aspell(word[1:])
+        elif elements.get(word[:1]) is True:
+            return elements[word[:1]] + aspell(word[2:])
+        else:
+            return 'cannot spell'
 
 
 #different permutations of len(1) and len(2) symbols
